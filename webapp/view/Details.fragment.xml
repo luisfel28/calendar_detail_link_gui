@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:core="sap.ui.core">
+	<ResponsivePopover
+			id="detailsPopover"
+			title="{detalhes>/titulo}"
+			icon="{detalhes>/icone}"
+			class="sapUiResponsivePadding--header"
+			showCloseButton="true"
+			placement="Auto">
+		<VBox class="sapUiSmallMargin">
+		<!-- <Table id="TabDetails" growing="true" growingThreshold="9999" items="{ path:'/results', sorter: { path: 'racct', descending: false } }" alternateRowColors="true"> -->
+		<Table id="TabDetails"  items="{ path:'resultados>/results', sorter: { path: 'docnum' } }" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center" width="5rem">
+						<header>
+							<Text text="Status" />
+						</header>
+					</Column>
+					<Column hAlign="Center" width="10rem" >
+						<header >
+							<Text text="Número do Idoc" />
+						</header>
+					</Column>
+<!-- 					<Column hAlign="Center">
+						<header>
+							<Text text="Data" />
+						</header>
+					</Column>	 -->				
+					<Column hAlign="Center" width="8rem">
+						<header>
+							<Text text="Hora" />
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Text text="Mensagem" />
+						</header>
+					</Column>					
+				</columns>
+				<ColumnListItem vAlign="Middle">
+					<!-- <Text text="{resultados>status}" /> -->
+					<core:Icon
+								src="{resultados>status}"
+								class="size1"
+								color="{resultados>color}" >
+								<core:layoutData>
+									<FlexItemData growFactor="1" />
+								</core:layoutData>
+							</core:Icon>					
+					<Link id="LnkIdoc" text="{resultados>docnum}" press="handleLinkIdoc" />
+					<!-- <Text text="{ path: 'resultados>credat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }" /> -->
+					<Text text="{ path: 'resultados>cretim', type: 'sap.ui.model.odata.type.Time' }" />
+					<Text text="{resultados>txtmsg}" />
+				</ColumnListItem>
+			</Table>		
+		</VBox>
+	</ResponsivePopover>
+</core:FragmentDefinition>

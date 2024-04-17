@@ -1,0 +1,12 @@
+{
+"base": "./webapp",
+    "conn_usestrictssl" : false,
+    "conn_server": "https://devre.fidelidademundial.com:44300/",
+    "conn_client" : "100",
+    "conn_user": "EX07447",
+    "conn_password": "2wsx#EDC4rfv",
+    "abap_package": "ZDEV_MONITOR_IDOC",
+    "abap_bsp": "ZMONITORIDOCS",
+    "abap_transport": "REDK904196",
+    "abap_bsp_text": "Monitor IDOCs"
+}

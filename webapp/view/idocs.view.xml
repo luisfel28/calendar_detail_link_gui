@@ -1,0 +1,35 @@
+<mvc:View controllerName="com.fidelidademundial.resumoidocs.controller.idocs"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:unified="sap.ui.unified"
+    xmlns="sap.m">
+    <Page id="page">
+         <VBox class="sapUiSmallMargin">
+            <SinglePlanningCalendar
+			id="IDOCCalendar"
+			class="sapUiSmallMarginTop"
+			title= "Entradas / Saídas"
+            startDate="{path: '/startDate'}"
+            appointmentSelect="handleAppointmentSelect"
+			appointments="{path: '/ZI_IDOC_SUM_DATES'}">
+                <views>
+<!--                     <SinglePlanningCalendarDayView key="DayView" title="Day" />
+                    <SinglePlanningCalendarWorkWeekView key="WorkWeekView" title="Work Week" />
+                    <SinglePlanningCalendarWeekView key="WeekView" title="Week" /> -->
+                    <SinglePlanningCalendarMonthView key="MonthView" title="Month" />
+                </views>
+                <appointments>
+                    <unified:CalendarAppointment
+                        id="IDOCCalendarApp"
+                        title="{title}"
+                        text="{text}"
+                        type="{type}"
+                        icon= "{icon}"
+                        startDate="{startDate}"
+                        endDate="{endDate}"
+                        >
+                    </unified:CalendarAppointment>
+                </appointments>
+		    </SinglePlanningCalendar>
+        </VBox>
+    </Page>
+</mvc:View>
