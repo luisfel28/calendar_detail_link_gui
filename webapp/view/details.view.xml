@@ -1,0 +1,120 @@
+<mvc:View controllerName="com.fidelidademundial.zrefxcustreport.controller.details"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Page id="page" title="">
+            <!-- <ScrollContainer  width="100%" horizontal="true" vertical="false" focusable="false"> -->
+					<HBox class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+						<VBox width="100%">
+								<FlexBox alignItems="Center" justifyContent="Start" class="sapUiSmallMarginBegin">
+									<Title text="{i18n>title}" class="Titulo" />
+									<Title id="lblObj" class="Objeto" />
+									<ToolbarSpacer/>
+								</FlexBox>
+						</VBox>
+					</HBox>
+        <content>
+			<Table id="TabDetails" growing="true"
+            growingThreshold="9999" updateFinished="MostraTotal" items="{ path:'/results', sorter: { path: 'racct', descending: false } }" alternateRowColors="true">
+				<columns>
+					<Column mergeDuplicates="true" >
+						<header>
+							<Text text="Nº conta" />
+						</header>
+					</Column>
+					<Column mergeDuplicates="true">
+						<header>
+							<Text text="Nº documento" />
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Text text="Linha lçto." />
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Text text="Dt Lançamento" />
+						</header>
+					</Column>
+					<Column hAlign="End">
+						<header>
+							<Text text="Valor" />
+						</header>
+					</Column>
+				</columns>
+				<ColumnListItem vAlign="Middle">
+					<Text text="{racct}" />
+					<Link text="{belnr}" press="handleLinkDoc" />
+					<Text text="{docln}" />
+					<Text text="{ path: 'budat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }" wrapping="false" />
+					<ObjectNumber
+							number="{
+								parts:[{path:'valor'},{path:'rhcur'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false},
+								formatter: '.onSum'
+							}"
+							unit="{rhcur}" />
+				</ColumnListItem>
+			</Table>
+			<!-- <t:Table id="TabDetails" rows="{/results}" visibleRowCount="20" selectionMode="None" alternateRowColors="true" width="auto">
+ 				<t:columns>
+					<t:Column width="11rem" mergeDuplicates="true" >
+						<Label text="Nº documento"/>
+						<t:template>
+							<Text text="{belnr}" wrapping="false" />
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Linha lçto." />
+						<t:template>
+							<Text text="{docln}" wrapping="false" />
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Dt Lançamento" />
+						<t:template>
+							<Text text="{ path: 'bldat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }" wrapping="false" />
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Nº conta" />
+						<t:template>
+							<Text text="{racct}" wrapping="false" />
+						</t:template>
+					</t:Column>					
+					<t:Column width="11rem">
+						<Label text="Valor" />
+						<t:template>
+							<Text text="{ parts: [ { path: 'valor' }, { path: 'rhcur' }] , type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: true, currencyCode: false } }" wrapping="false" />						
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table> -->
+        </content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+<!-- 					<ObjectHeader
+					number="{
+						parts:[{path:'Price'},{path:'CurrencyCode'}],
+						type: 'sap.ui.model.type.Currency',
+						formatOptions: {showMeasure: false}
+					}"
+					numberUnit="{CurrencyCode}"
+						>
+				</ObjectHeader> -->
+				<Title text="Total:" level="H4" />
+				<ObjectNumber
+					id="TxtTotal"
+					number="{
+						type: 'sap.ui.model.type.Currency',
+						formatOptions: {showMeasure: false, decimalSeparator: ',', groupingSeparator: '.'}
+					}"
+					state="Warning" />				
+			</Toolbar>
+		</footer>		
+    </Page>
+</mvc:View>

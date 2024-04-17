@@ -1,0 +1,146 @@
+{
+  "_version": "1.28.0",
+  "sap.app": {
+    "id": "com.fidelidademundial.zrefxcustreport",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.12.3",
+      "toolsId": "3ddc5f6c-03e2-46f2-875e-a388b30bda3b"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZRE_GW_CUSTOS_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1":{
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "REMasterData",
+          "action": "manageBuilding",
+          "title": "Detalhe EdifiCios"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.84.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.fidelidademundial.zrefxcustreport.i18n.i18n"
+        }
+      },
+      "main": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "useBatch": false
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.fidelidademundial.zrefxcustreport.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "Routerelat",
+          "pattern": ":?query:",
+          "target": "Targetrelat"
+        },
+        {
+          "name": "Routedetails",
+          "pattern": "details/{bukrs}/{swenr}/{sgenr}/{sgrnr}/{dtini}/{dtfim}",
+          "target": "TargetDetails"
+        }        
+      ],
+      "targets": {
+        "Targetrelat": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "relat",
+          "viewName": "relat",
+          "viewLevel": 1
+        },
+        "TargetDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "details",
+          "viewName": "details",
+          "viewLevel": 2
+        }        
+      }
+    },
+    "rootView": {
+      "viewName": "com.fidelidademundial.zrefxcustreport.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
